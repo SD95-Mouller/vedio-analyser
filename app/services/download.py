@@ -2,7 +2,7 @@
 import subprocess
 from app.config import COOKIES_PATH, DOWNLOAD_DIR
 
-# 获取函数参数：视频链接
+# 获取函数参数：视频链接，视频文件名（可选，默认为 "video"）
 def download_video(url: str, filename: str = "video"):
     if not COOKIES_PATH or not DOWNLOAD_DIR:
         raise RuntimeError("COOKIES_PATH 和 DOWNLOAD_DIR 必须在环境变量中配置")
