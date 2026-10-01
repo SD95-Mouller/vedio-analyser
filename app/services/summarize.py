@@ -1,16 +1,16 @@
 # ai总结功能
-from app.config import DEEPSEEK_API_KEY
 from openai import OpenAI
 
-def summarize_text(text: str) -> str:
+def summarize_text(text: str, api_key: str | None = None) -> str:
 	if not text.strip():
 		return ""
 
-	if not DEEPSEEK_API_KEY:
+	key = api_key
+	if not key:
 		raise ValueError("未配置 DEEPSEEK_API_KEY")
 
 	client = OpenAI(
-		api_key=DEEPSEEK_API_KEY,
+		api_key=key,
 		base_url="https://api.deepseek.com",
 	)
 	response = client.chat.completions.create(
