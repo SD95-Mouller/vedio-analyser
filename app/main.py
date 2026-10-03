@@ -1,10 +1,19 @@
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.api.v1.analyze import router as analyze_router
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[               
+        "http://localhost:5173"
+    ],
+    allow_methods=["POST"],
+    allow_headers=["Authorization", "Content-Type"],
+)
 app.include_router(analyze_router, prefix="/api")
 
 
